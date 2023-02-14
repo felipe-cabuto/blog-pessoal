@@ -12,14 +12,14 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@RequestMapping("/postagens")
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RestController //informa para o Spring que é um Controller
+@RequestMapping("/postagens") //mapear as solicitações para os Métodos da Classe definindo URL padrão
+@CrossOrigin(origins = "*", allowedHeaders = "*") //poder ser consumido de qualquer origem
 public class PostagemController {
-    @Autowired
+    @Autowired //injeção de dependência
     private PostagemRepository postagemRepository;
 
-    @GetMapping
+    @GetMapping//mapeia todas as Requisições HTTP GET
     public ResponseEntity<List<Postagem>> getAll() {
         return ResponseEntity.ok(postagemRepository.findAll());
     }
