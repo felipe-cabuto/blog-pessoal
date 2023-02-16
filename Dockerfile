@@ -1,4 +1,4 @@
-FROM openjdk:17.0.1-jdk-oracle as build
+FROM openjdk:19.0.2-jdk-oracle as build
 
 WORKDIR /workspace/app
 
@@ -9,11 +9,11 @@ COPY src src
 
 RUN chmod -R 777 ./mvnw
 
-RUN ./mvnw install -DskipTests
+RUN ./mvn install -DskipTestes
 
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
-FROM openjdk:17.0.1-jdk-oracle
+FROM openjdk:19.0.2-jdk-oracle
 
 VOLUME /tmp
 

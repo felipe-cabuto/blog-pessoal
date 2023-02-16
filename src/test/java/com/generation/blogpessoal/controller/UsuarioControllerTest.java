@@ -1,12 +1,10 @@
 package com.generation.blogpessoal.controller;
 
+import java.util.Optional;
+
 import com.generation.blogpessoal.model.Usuario;
 import com.generation.blogpessoal.repository.UsuarioRepository;
 import com.generation.blogpessoal.service.UsuarioService;
-
-import java.util.List;
-import java.util.Optional;
-
 import org.junit.jupiter.api.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,10 +110,13 @@ public class UsuarioControllerTest {
     public void deveLogar(){
         Optional<Usuario> usuarioCadastrado = usuarioService.cadastrarUsuario(new Usuario(0L, "Juliana Paes", "juliana_paes@email.com.br", "13465278", "https://i.imgur.com/JR7kUFU.jpg"));
 
-        HttpEntity<Usuario> corpoRequisicao = new HttpEntity<Usuario>(new Usuario("juliana_paes@email.com.br", "13465278" ));
+
+        HttpEntity<Usuario> corpoRequisicao = new HttpEntity<Usuario>(new Usuario(null, null, "juliana_paes@email.com.br", "13465278", null));
 
         ResponseEntity<Usuario> corpoResposta = testRestTemplate
+                .withBasicAuth("root@root.com", "rootroot")
                 .exchange("/usuarios/logar", HttpMethod.POST, corpoRequisicao, Usuario.class);
-        assertEquals(HttpStatus.UNAUTHORIZED, corpoResposta.getStatusCode());
+
+        assertEquals(HttpStatus.OK, corpoResposta.getStatusCode());
     }
 }
