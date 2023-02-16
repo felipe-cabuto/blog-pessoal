@@ -1,8 +1,8 @@
 package com.generation.blogpessoal.controller;
 
-import com.blogpessoal.blogpessoal.model.Usuario;
-import com.blogpessoal.blogpessoal.repository.UsuarioRepository;
-import com.blogpessoal.blogpessoal.service.UsuarioService;
+import com.generation.blogpessoal.model.Usuario;
+import com.generation.blogpessoal.repository.UsuarioRepository;
+import com.generation.blogpessoal.service.UsuarioService;
 
 import java.util.List;
 import java.util.Optional;
