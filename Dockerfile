@@ -9,7 +9,7 @@ COPY src src
 
 RUN chmod -R 777 ./mvnw
 
-RUN ./mvn install -DskipTestes
+RUN ./mvnw install -DskipTests
 
 RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
 
